@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>Guaraná.ch</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <button class="close-btn" onclick="closeApp()">×</button>
+
+        <div class="brand">
+            <div class="brand-name">Guaraná.ch</div>
+            <div class="brand-subtitle">SHOP 🤖</div>
+        </div>
+
+        <button class="menu-btn" onclick="showMenu()">☰</button>
+    </header>
+
+
+    <main>
+
+        <!-- Logo -->
+        <section class="logo-section">
+            <div class="logo-placeholder">
+                Guaraná.ch
+            </div>
+        </section>
+
+
+        <!-- Step indicator -->
+        <div class="steps">
+
+            <div class="step active" id="stepCircle1">1</div>
+
+            <div class="line" id="line1"></div>
+
+            <div class="step" id="stepCircle2">2</div>
+
+            <div class="line" id="line2"></div>
+
+            <div class="step" id="stepCircle3">3</div>
+
+        </div>
+
+
+        <!-- STEP 1 -->
+        <section class="card" id="step1">
+
+            <div class="step-title">
+                Step 1 of 3
+            </div>
+
+            <h1>Welcome to Guaraná.ch</h1>
+
+            <p>
+                Browse our catalogue and choose how you would like to
+                receive order confirmation.
+            </p>
+
+            <button class="primary-btn" onclick="nextStep(2)">
+                Continue
+            </button>
+
+        </section>
+
+
+        <!-- STEP 2 -->
+        <section class="card hidden" id="step2">
+
+            <div class="step-title">
+                Step 2 of 3
+            </div>
+
+            <h1>Choose your contact method</h1>
+
+            <p>
+                Select your preferred channel for order confirmation.
+            </p>
+
+            <div class="contact-options">
+
+                <button
+                    class="option-btn"
+                    id="telegramOption"
+                    onclick="selectContact('Telegram')"
+                >
+                    Telegram
+                </button>
+
+                <button
+                    class="option-btn"
+                    id="whatsappOption"
+                    onclick="selectContact('WhatsApp')"
+                >
+                    WhatsApp
+                </button>
+
+            </div>
+
+            <div class="button-row">
+
+                <button class="secondary-btn" onclick="nextStep(1)">
+                    Back
+                </button>
+
+                <button
+                    class="primary-btn"
+                    id="continueContact"
+                    onclick="nextStep(3)"
+                    disabled
+                >
+                    Continue
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- STEP 3 -->
+        <section class="card hidden" id="step3">
+
+            <div class="step-title">
+                Step 3 of 3
+            </div>
+
+            <h1>Add your contact</h1>
+
+            <p>
+                This contact can be attached to your orders.
+            </p>
+
+            <label id="contactLabel">
+                Contact
+            </label>
+
+            <input
+                id="contactInput"
+                type="text"
+                placeholder="Enter your contact"
+                autocomplete="off"
+            >
+
+            <div class="button-row">
+
+                <button class="secondary-btn" onclick="nextStep(2)">
+                    Back
+                </button>
+
+                <button class="primary-btn" onclick="unlockCatalogue()">
+                    Open catalogue
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- CATALOGUE -->
+        <section class="catalogue hidden" id="catalogue">
+
+            <h1>🛍️ Catalogue</h1>
+
+            <p class="catalogue-subtitle">
+                Choose a product below.
+            </p>
+
+            <div class="products">
+
+                <div class="product-card">
+
+                    <div class="product-image">
+                        📦
+                    </div>
+
+                    <h2>Product 1</h2>
+
+                    <p>
+                        Product description goes here.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <strong>₦10,000</strong>
+
+                        <button onclick="orderProduct('Product 1')">
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="product-card">
+
+                    <div class="product-image">
+                        📦
+                    </div>
+
+                    <h2>Product 2</h2>
+
+                    <p>
+                        Product description goes here.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <strong>₦15,000</strong>
+
+                        <button onclick="orderProduct('Product 2')">
+                            Order
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
+
+</body>
+      </html>
