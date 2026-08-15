@@ -2,39 +2,1145 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     >
 
-    <title>Guaraná.ch</title>
+    <title>Guarană.ch</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            min-height: 100vh;
+            background: #050505;
+        }
+
+        /* HEADER */
+
+        .header {
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            border-bottom: 1px solid #1d1d1d;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: #050505;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-logo {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .menu-button {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #292929;
+            background: #111;
+            color: #fff;
+            border-radius: 12px;
+            font-size: 22px;
+        }
+
+        /* LOGO AREA */
+
+        .logo-area {
+            text-align: center;
+            padding: 25px 20px 10px;
+        }
+
+        .main-logo {
+            width: 210px;
+            max-width: 75%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            padding: 15px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 10px 0 14px;
+        }
+
+        .step-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #151515;
+            border: 1px solid #444;
+            color: #aaa;
+            font-weight: bold;
+        }
+
+        .step-circle.active {
+            background: #e8c86b;
+            border-color: #e8c86b;
+            color: #000;
+        }
+
+        .step-circle.done {
+            background: #185c3a;
+            border-color: #35a96b;
+            color: #fff;
+        }
+
+        .step-text {
+            text-align: center;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .panel {
+            background: #12111d;
+            border: 1px solid #292737;
+            border-radius: 22px;
+            padding: 25px;
+        }
+
+        .panel h1 {
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .panel h2 {
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .panel p {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .button-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 13px;
+            padding: 15px;
+            font-weight: 700;
+            color: #fff;
+            background: #2f8f35;
+        }
+
+        .btn.secondary {
+            background: #292933;
+        }
+
+        .btn.gold {
+            background: #d8b85d;
+            color: #111;
+        }
+
+        .btn.full {
+            width: 100%;
+        }
+
+        .contact-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .contact-option {
+            padding: 18px 10px;
+            background: #1b1a26;
+            border: 1px solid #3a3947;
+            color: #fff;
+            border-radius: 14px;
+            font-weight: 700;
+        }
+
+        .contact-option.selected {
+            border-color: #e8c86b;
+            background: #302c25;
+        }
+
+        .contact-input {
+            width: 100%;
+            background: #1c1b27;
+            border: 1px solid #494758;
+            border-radius: 13px;
+            padding: 16px;
+            color: #fff;
+            outline: none;
+            margin-bottom: 18px;
+        }
+
+        .contact-input:focus {
+            border-color: #e8c86b;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* CATALOGUE */
+
+        .catalogue {
+            padding: 0 12px 40px;
+        }
+
+        .catalogue-top {
+            text-align: center;
+            padding: 10px 0 20px;
+        }
+
+        .catalogue-logo {
+            width: 150px;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        .catalogue-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control {
+            background: #111;
+            border: 1px solid #292929;
+            color: #ccc;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .catalogue-title {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .catalogue-subtitle {
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* PRODUCTS */
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .product-card {
+            background: #151515;
+            border: 1px solid #214d36;
+            border-radius: 13px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .product-card:active {
+            transform: scale(0.98);
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #202020;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 2;
+            background: #54b986;
+            color: #fff;
+            padding: 5px 8px;
+            border-radius: 12px;
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 10px;
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            line-height: 1.25;
+        }
+
+        .product-description {
+            color: #8d8d8d;
+            font-size: 11px;
+            line-height: 1.4;
+            min-height: 31px;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: #ddd;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .add-button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 9px;
+            background: #246b42;
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        /* BOTTOM NAV */
+
+        .bottom-nav {
+            position: fixed;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            background: rgba(10, 10, 10, 0.97);
+            border-top: 1px solid #242424;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 10px 12px;
+            z-index: 30;
+        }
+
+        .nav-button {
+            border: none;
+            background: transparent;
+            color: #777;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .nav-button span {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 3px;
+        }
+
+        .nav-button.active {
+            color: #e8c86b;
+        }
+
+        @media (max-width: 360px) {
+            .panel {
+                padding: 20px;
+            }
+
+            .product-info {
+                padding: 8px;
+            }
+
+            .product-name {
+                font-size: 13px;
+            }
+
+            .product-description {
+                font-size: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <header class="topbar">
-        <button class="close-btn" onclick="closeApp()">×</button>
+<div class="app">
 
-        <div class="brand">
-            <div class="brand-name">Guaraná.ch</div>
-            <div class="brand-subtitle">SHOP 🤖</div>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-left">
+            <img
+                src="assets/logo.png"
+                alt="Guarană.ch"
+                class="header-logo"
+            >
+
+            <div class="brand-name">
+                Guarană.ch
+            </div>
         </div>
 
-        <button class="menu-btn" onclick="showMenu()">☰</button>
+        <button class="menu-button" onclick="showCatalogue()">
+            ☰
+        </button>
     </header>
 
 
-    <main>
+    <!-- WELCOME / SETUP -->
+    <main id="welcome" class="welcome">
 
-        <!-- Logo -->
-        <section class="logo-section">
-            <div class="logo-placeholder">
-                Guaraná.ch
+        <div class="logo-area">
+            <img
+                src="assets/logo.png"
+                alt="Guarană.ch"
+                class="main-logo"
+            >
+        </div>
+
+
+        <!-- STEP INDICATOR -->
+        <div class="steps">
+            <div id="circle1" class="step-circle active">1</div>
+            <div id="circle2" class="step-circle">2</div>
+            <div id="circle3" class="step-circle">3</div>
+        </div>
+
+
+        <!-- STEP 1 -->
+        <div id="step1">
+
+            <div class="step-text">
+                Step 1 of 3
             </div>
-        </section>
 
+            <div class="panel">
+
+                <h1>Welcome to Guarană.ch</h1>
+
+                <p>
+                    Discover our catalogue and browse our latest products
+                    in one simple place.
+                </p>
+
+                <button
+                    class="btn full"
+                    onclick="goToStep(2)"
+                >
+                    Continue
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 2 -->
+        <div id="step2" class="hidden">
+
+            <div class="step-text">
+                Step 2 of 3
+            </div>
+
+            <div class="panel">
+
+                <h2>Choose your contact method</h2>
+
+                <p>
+                    Select your preferred channel for order confirmation.
+                </p>
+
+                <div class="contact-options">
+
+                    <button
+                        id="signalButton"
+                        class="contact-option"
+                        onclick="selectContact('Signal')"
+                    >
+                        Signal
+                    </button>
+
+                    <button
+                        id="threemaButton"
+                        class="contact-option"
+                        onclick="selectContact('Threema')"
+                    >
+                        Threema
+                    </button>
+
+                </div>
+
+                <div class="button-row">
+
+                    <button
+                        class="btn secondary"
+                        onclick="goToStep(1)"
+                    >
+                        Back
+                    </button>
+
+                    <button
+                        class="btn"
+                        onclick="goToStep(3)"
+                    >
+                        Continue
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3 -->
+        <div id="step3" class="hidden">
+
+            <div class="step-text">
+                Step 3 of 3
+            </div>
+
+            <div class="panel">
+
+                <h2>Add your contact</h2>
+
+                <p>
+                    This contact will be attached to your order.
+                </p>
+
+                <input
+                    id="contactInput"
+                    class="contact-input"
+                    type="text"
+                    placeholder="Enter your contact"
+                >
+
+                <div class="button-row">
+
+                    <button
+                        class="btn secondary"
+                        onclick="goToStep(2)"
+                    >
+                        Back
+                    </button>
+
+                    <button
+                        class="btn"
+                        onclick="unlockCatalogue()"
+                    >
+                        Open Catalogue
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- CATALOGUE -->
+    <main id="catalogue" class="catalogue hidden">
+
+        <div class="catalogue-top">
+
+            <img
+                src="assets/logo.png"
+                alt="Guarană.ch"
+                class="catalogue-logo"
+            >
+
+            <h1 class="catalogue-title">
+                Catalogue
+            </h1>
+
+            <p class="catalogue-subtitle">
+                Explore our latest products
+            </p>
+
+        </div>
+
+
+        <div class="catalogue-controls">
+
+            <button class="control">
+                🇫🇷 FR ▾
+            </button>
+
+            <button class="control">
+                💰 CHF
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCT GRID -->
+        <div class="product-grid">
+
+
+            <!-- GAMING HEADSET -->
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <span class="new-badge">
+                        NEW
+                    </span>
+
+                    <img
+                        src="assets/gaming-headset.png"
+                        alt="Gaming Headset"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h2 class="product-name">
+                        Gaming Headset
+                    </h2>
+
+                    <p class="product-description">
+                        Comfortable headset with immersive sound.
+                    </p>
+
+                    <div class="product-price">
+                        dès 89 CHF
+                    </div>
+
+                    <button
+                        class="add-button"
+                        onclick="addProduct('Gaming Headset')"
+                    >
+                        Add to cart
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- MECHANICAL KEYBOARD -->
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <span class="new-badge">
+                        NEW
+                    </span>
+
+                    <img
+                        src="assets/mechanical-keyboard.png"
+                        alt="Mechanical Keyboard"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h2 class="product-name">
+                        Mechanical Keyboard
+                    </h2>
+
+                    <p class="product-description">
+                        Premium keyboard for work and gaming.
+                    </p>
+
+                    <div class="product-price">
+                        dès 109 CHF
+                    </div>
+
+                    <button
+                        class="add-button"
+                        onclick="addProduct('Mechanical Keyboard')"
+                    >
+                        Add to cart
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- GAMING MOUSE -->
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <span class="new-badge">
+                        NEW
+                    </span>
+
+                    <img
+                        src="assets/gaming-mouse.png"
+                        alt="Wireless Gaming Mouse"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h2 class="product-name">
+                        Wireless Gaming Mouse
+                    </h2>
+
+                    <p class="product-description">
+                        Lightweight wireless mouse with precise control.
+                    </p>
+
+                    <div class="product-price">
+                        dès 69 CHF
+                    </div>
+
+                    <button
+                        class="add-button"
+                        onclick="addProduct('Wireless Gaming Mouse')"
+                    >
+                        Add to cart
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- DIGITAL CAMERA -->
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <span class="new-badge">
+                        NEW
+                    </span>
+
+                    <img
+                        src="assets/digital-camera.png"
+                        alt="Compact Digital Camera"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h2 class="product-name">
+                        Compact Digital Camera
+                    </h2>
+
+                    <p class="product-description">
+                        Compact camera for everyday photography.
+                    </p>
+
+                    <div class="product-price">
+                        dès 149 CHF
+                    </div>
+
+                    <button
+                        class="add-button"
+                        onclick="addProduct('Compact Digital Camera')"
+                    >
+                        Add to cart
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- TECH ORGANIZER -->
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <span class="new-badge">
+                        NEW
+                    </span>
+
+                    <img
+                        src="assets/tech-organizer.png"
+                        alt="Tech Organizer Bag"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h2 class="product-name">
+                        Tech Organizer Bag
+                    </h2>
+
+                    <p class="product-description">
+                        Keep cables and accessories organized.
+                    </p>
+
+                    <div class="product-price">
+                        dès 45 CHF
+                    </div>
+
+                    <button
+                        class="add-button"
+                        onclick="addProduct('Tech Organizer Bag')"
+                    >
+                        Add to cart
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- RGB LIGHT -->
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <span class="new-badge">
+                        NEW
+                    </span>
+
+                    <img
+                        src="assets/rgb-light.png"
+                        alt="RGB Ambient Light"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h2 class="product-name">
+                        RGB Ambient Light
+                    </h2>
+
+                    <p class="product-description">
+                        Modern ambient lighting for your room.
+                    </p>
+
+                    <div class="product-price">
+                        dès 49 CHF
+                    </div>
+
+                    <button
+                        class="add-button"
+                        onclick="addProduct('RGB Ambient Light')"
+                    >
+                        Add to cart
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </main>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav id="bottomNav" class="bottom-nav hidden">
+
+        <button
+            class="nav-button active"
+            onclick="showCatalogue()"
+        >
+            <span>🛍️</span>
+            Catalogue
+        </button>
+
+        <button
+            class="nav-button"
+            onclick="showCart()"
+        >
+            <span>🛒</span>
+            Cart
+        </button>
+
+        <button
+            class="nav-button"
+            onclick="showContact()"
+        >
+            <span>💬</span>
+            Contact
+        </button>
+
+    </nav>
+
+</div>
+
+
+<script>
+
+    let currentStep = 1;
+    let selectedContact = "";
+    let cart = [];
+
+
+    function goToStep(step) {
+
+        currentStep = step;
+
+        document
+            .getElementById("step1")
+            .classList.add("hidden");
+
+        document
+            .getElementById("step2")
+            .classList.add("hidden");
+
+        document
+            .getElementById("step3")
+            .classList.add("hidden");
+
+
+        document
+            .getElementById("step" + step)
+            .classList.remove("hidden");
+
+
+        updateSteps(step);
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+
+    function updateSteps(step) {
+
+        const circles = [
+            document.getElementById("circle1"),
+            document.getElementById("circle2"),
+            document.getElementById("circle3")
+        ];
+
+
+        circles.forEach((circle, index) => {
+
+            circle.classList.remove(
+                "active",
+                "done"
+            );
+
+            if (index + 1 < step) {
+                circle.classList.add("done");
+            }
+
+            if (index + 1 === step) {
+                circle.classList.add("active");
+            }
+
+        });
+    }
+
+
+    function selectContact(method) {
+
+        selectedContact = method;
+
+        document
+            .getElementById("signalButton")
+            .classList.remove("selected");
+
+        document
+            .getElementById("threemaButton")
+            .classList.remove("selected");
+
+
+        if (method === "Signal") {
+
+            document
+                .getElementById("signalButton")
+                .classList.add("selected");
+
+        } else {
+
+            document
+                .getElementById("threemaButton")
+                .classList.add("selected");
+
+        }
+    }
+
+
+    function unlockCatalogue() {
+
+        const contact =
+            document
+                .getElementById("contactInput")
+                .value
+                .trim();
+
+
+        if (!selectedContact) {
+
+            alert("Please choose a contact method.");
+
+            return;
+        }
+
+
+        if (!contact) {
+
+            alert("Please enter your contact.");
+
+            return;
+        }
+
+
+        localStorage.setItem(
+            "guarana_contact_method",
+            selectedContact
+        );
+
+
+        localStorage.setItem(
+            "guarana_contact",
+            contact
+        );
+
+
+        showCatalogue();
+    }
+
+
+    function showCatalogue() {
+
+        document
+            .getElementById("welcome")
+            .classList.add("hidden");
+
+        document
+            .getElementById("catalogue")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("bottomNav")
+            .classList.remove("hidden");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+
+    function addProduct(product) {
+
+        cart.push(product);
+
+        alert(
+            product +
+            " added to your cart."
+        );
+    }
+
+
+    function showCart() {
+
+        if (cart.length === 0) {
+
+            alert("Your cart is empty.");
+
+            return;
+        }
+
+
+        alert(
+            "Cart:\n\n" +
+            cart.join("\n")
+        );
+    }
+
+
+    function showContact() {
+
+        const method =
+            localStorage.getItem(
+                "guarana_contact_method"
+            );
+
+        const contact =
+            localStorage.getItem(
+                "guarana_contact"
+            );
+
+
+        if (method && contact) {
+
+            alert(
+                "Contact method: " +
+                method +
+                "\nContact: " +
+                contact
+            );
+
+        } else {
+
+            alert(
+                "No contact information saved."
+            );
+
+        }
+    }
+
+</script>
+
+</body>
+    </html>
 
         <!-- Step indicator -->
         <div class="steps">
